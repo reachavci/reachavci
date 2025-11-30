@@ -8,7 +8,7 @@
         body {
             font-family: "Times New Roman", Times, serif;
             font-size: 12pt;
-            max-width: none;
+            max-width: 650px;
             margin: 20px;
             padding: 0;
             line-height: 1.5;
@@ -26,13 +26,6 @@
             font-size: 12pt;
             margin: 20px 0 10px 0;
             font-weight: bold;
-        }
-        
-        h3 {
-            font-size: 12pt;
-            margin: 15px 0 10px 0;
-            font-weight: bold;
-            font-style: italic;
         }
         
         a {
@@ -58,34 +51,6 @@
             border-top: 1px solid #000;
             margin: 15px 0;
         }
-        
-        .case-study {
-            margin-top: 30px;
-        }
-        
-        .case-study-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        
-        blockquote {
-            font-style: italic;
-            font-size: 11pt;
-            margin: 20px 60px;
-            line-height: 1.4;
-        }
-        
-        .footnote {
-            font-size: 10pt;
-            vertical-align: super;
-        }
-        
-        .footnotes {
-            margin-top: 30px;
-            padding-top: 15px;
-            border-top: 1px solid #000;
-            font-size: 10pt;
-        }
     </style>
 </head>
 <body>
@@ -104,60 +69,10 @@ Contact: <a href="https://www.linkedin.com/in/mehmet-avci01/">LinkedIn</a> | <a 
 <div>
 I write for tech companies across formats (editorial content, UX copy, marketing materials, podcasts), narrativizing products while explaining them clearly through data-driven and creative approaches. My work connects marketing strategy with journalistic analysis of trends and social change in AI, crypto, and new media.
 </div>
-
 <hr>
-
 <h2>CASE STUDIES</h2>
-
-<div class="case-study">
-<div class="case-study-title">Beyond Tokenization: How Story Protocol Builds Infrastructure for AI-Scale Intellectual Property</div>
-
-<blockquote>
-"Since Bitcoin and Ethereum revolutionized money in prior decades, little work has been done to truly adapt blockchains for new asset classes beyond currencies."<span class="footnote">1</span>
-</blockquote>
-
-<p>Blockchain development has optimized for tokenization: representing ownership through cryptographic certificates. This approach works for transferable assets but breaks down for intellectual property, where value derives not from ownership certificates but from usage rights, derivative permissions, and automated revenue distribution across relationship networks. AI model training exposes this limitation at scale.</p>
-
-<p>Large language models consume training data from millions of sources at computational speeds, generating derivatives that themselves become inputs for subsequent models. The existing IP management infrastructure operates through human-mediated contracts, legal negotiations, and manual royalty accounting. These systems cannot process licensing agreements at the scale and velocity AI requires. The bottleneck is architectural: you cannot negotiate millions of individual licensing agreements, cannot track derivatives when AI generates 100,000 variations in 24 hours, cannot distribute micropayments to thousands of contributors per model. The gap is structural, not administrative.</p>
-
-<p>Story Protocol addresses this through purpose-built blockchain architecture that treats intellectual property as programmable infrastructure rather than tokenized metadata. Launched on mainnet in early 2025, the protocol implements specialized execution cores for IP-specific operations: graph traversal across derivative chains, cryptographic verification of licensing terms, automated royalty distribution through relationship networks, and cross-chain IP coordination. These operations execute at the protocol layer, not through application-level smart contracts, making them computationally feasible at AI scale. The architectural distinction determines what becomes mechanically possible.</p>
-
-<h3>Multi-Core Architecture: Infrastructure for IP Relationship Graphs</h3>
-
-<p>The technical architecture reveals Story's approach to infrastructure rather than incremental improvement. Most blockchains run on single execution environments where all operations compete for the same computational resources. Story implements a multi-core execution architecture: a main EVM-compatible core handles general transactions while specialized cores optimize for distinct operational requirements. The complexity remains invisible to users. Each specialized core exposes functionality through smart contracts that automatically engage when users interact with associated contracts.</p>
-
-<p>The Intellectual Property Core manages IP as a native asset class with graph-based data structures. When a creator registers intellectual property on Story, the system doesn't simply mint a token with attached metadata. It creates a node in a relationship graph where edges represent economic and legal commitments to other IP assets. This distinction matters fundamentally when dealing with derivatives at scale.</p>
-
-<p>The Proof of Creativity protocol, deployed on the IP Core, transforms IP into programmable assets through a two-component system: data structures and modules. IP Assets register onchain as ERC-721 tokens with associated IP Accounts, which are modified ERC-6551 implementations functioning as smart contract wallets. The IP Account's execute() function allows calling arbitrary modules via encoded bytes data, making the system extensible for future functionality. Modules add capabilities: licensing modules define usage terms, royalty modules automate revenue distribution, dispute modules handle infringement resolution.</p>
-
-<p>Consider AI model training requiring licensed data from 10,000 creators. Traditional blockchain approaches would execute 10,000 separate smart contract calls, each validating licensing terms independently. On Ethereum, this scenario becomes computationally prohibitive. Each licensing validation requires reading contract state, executing validation logic, updating state if terms are accepted, and emitting events. Gas costs scale linearly with the number of validations. A derivative chain ten levels deep might require dozens of nested contract calls, each incurring computational overhead.</p>
-
-<p>Story's IP Core handles this scenario through native graph traversal operations. Creators register IP assets with programmable licensing terms embedded in the asset itself via the Programmable IP License framework. When an AI model queries available training data, the IP Core traverses the graph using optimized data models specifically designed for IP relationship queries. The system validates compatibility across licensing terms by checking parent asset parameters and traversing ancestor chains to ensure consistent rule enforcement. The compatibility engine applies universally across all IP terms without requiring separate contract execution for each relationship. Licenses execute automatically, payments route through royalty vaults, and the entire process occurs at the protocol level rather than application level.</p>
-
-<p>The computational difference determines feasibility rather than just efficiency. Graph traversal complexity on general-purpose chains grows exponentially with relationship depth. On Story's IP Core, optimized graph algorithms and specialized data structures make traversal operations execute in acceptable time frames even for complex genealogies. This isn't optimization of existing functionality but entirely new capability enabled by purpose-built architecture.</p>
-
-<blockquote>
-"AI is evolving from standalone models to networks of autonomous agents that can sense, decide, and act to achieve goals. This represents a shift from viewing AI as just a tool to seeing it as an ecosystem where agents collaborate and generate value through their interactions."<span class="footnote">2</span>
-</blockquote>
-
-<p>Story's architecture enables three distinct interaction layers, each requiring different technical capabilities and representing different stages of autonomous commerce maturity. Human-to-human IP licensing represents the baseline: creators register IP with programmable terms, other humans license that IP, smart contracts execute payments and establish usage rights. Agent-to-human interactions introduce autonomous licensing without human intermediation on the consumption side. An AI agent identifies needed training data, queries Story's IP registry for available datasets with compatible licensing terms, evaluates cost versus value, executes licensing agreements onchain, and consumes the data for model training.</p>
-
-<blockquote>
-"Whereas Bitcoin operates as the store of value for all commodity assets in the form of digital gold, Story operates as a store of value for all intellectual assets in the form of programmable intellectual property."<span class="footnote">3</span>
-</blockquote>
-
-<p>The comparison suggests foundational infrastructure rather than application-layer protocol. Bitcoin created scarcity and verifiability for digital commodities through proof-of-work consensus and cryptographic guarantees. Story creates programmability and composability for digital IP through graph-native architecture and specialized execution cores. Both serve as foundational layers for asset classes requiring infrastructure fundamentally different from general-purpose systems.</p>
-
-<p>What Story enables that wasn't previously viable becomes clear through enumeration. Autonomous AI agents license training data from thousands of creators programmatically without human intermediation. Creators receive attribution and compensation for derivatives even when creation happens at computational speeds exceeding human transaction processing. IP assets function as cross-chain collateral in DeFi protocols through standardized interfaces exposing licensing terms and revenue streams. The intelligence economy thesis suggests transformation as fundamental as money's digitization.</p>
-
-<div class="footnotes">
-<strong>Notes</strong><br>
-1. Story Protocol Whitepaper<br>
-2. Story Protocol Whitepaper<br>
-3. Story Protocol Whitepaper
+<div>
+<a href="story-protocol.html">Beyond Tokenization: How Story Protocol Builds Infrastructure for AI-Scale Intellectual Property</a>
 </div>
-
-</div>
-
 </body>
 </html>
