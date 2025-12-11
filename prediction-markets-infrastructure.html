@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Architecture of Prediction</title>
+    <meta name="description" content="An analysis of how prediction market infrastructure—fee structures, market design, and regulatory frameworks—determines what these platforms can actually measure, using data from Kalshi, Polymarket, and Iowa Electronic Markets.">
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12pt;
+            max-width: none;
+            margin: 20px;
+            padding: 0;
+            line-height: 1.5;
+            color: #000;
+            background-color: #fff;
+        }
+        
+        h1 {
+            font-size: 18pt;
+            margin: 0 0 5px 0;
+            font-weight: bold;
+        }
+        
+        .subtitle {
+            font-size: 12pt;
+            margin: 0 0 20px 0;
+            font-style: italic;
+            color: #333;
+        }
+        
+        h2 {
+            font-size: 14pt;
+            margin: 25px 0 10px 0;
+            font-weight: bold;
+            font-style: italic;
+        }
+        
+        a {
+            color: #0000EE;
+            text-decoration: underline;
+        }
+        
+        a:visited {
+            color: #551A8B;
+        }
+        
+        p {
+            margin: 15px 0;
+        }
+        
+        .footnote {
+            font-size: 9pt;
+            vertical-align: super;
+        }
+        
+        .footnotes {
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 1px solid #000;
+            font-size: 10pt;
+        }
+        
+        .back-link {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="back-link">
+<a href="index.html">← Back</a>
+</div>
+
+<h1>The Architecture of Prediction</h1>
+<div class="subtitle">How market infrastructure determines what prediction markets can know</div>
+
+<p>In the weeks leading up to November 5th, 2024, when Donald Trump won the presidential election, prediction markets consistently showed him as the favorite to win. But observers watching multiple platforms would have seen something curious. The same event traded at different prices depending on where you looked. Kalshi showed Trump at 58% probability, Polymarket at 62%, while Iowa Electronic Markets hovered around 55%.</p>
+
+<p>These gaps persisted through election day. Billions in trading volume, sophisticated participants monitoring prices yet the differences remained. One platform operated under CFTC regulatory oversight, another on offshore blockchain infrastructure. The gaps weren't closing.</p>
+
+<p>The standard explanation treats these differences as arbitrage inefficiencies. There exists some true probability that markets collectively discover. Price differences simply reflect the time needed for capital to flow freely enough to eliminate profit opportunities. Wait long enough, gather enough liquidity, and these gaps should close.</p>
+
+<p>That framework misunderstands what prediction markets actually do. These aren't three imperfect measurements of one true probability being discovered through better capital flows. They're three fundamentally different knowledge objects produced by three radically different infrastructures. Prediction markets don't discover pre-existing information about the future. They produce distinct forms of knowledge based on their architectural design. The design determines what can be known.</p>
+
+<p>Understanding what prediction markets actually measure requires looking past surface-level prices to examine the mechanisms producing them. Those mechanisms don't just affect efficiency or liquidity. They constitute what information means in the first place.</p>
+
+<h2>Three Platforms, Three Measurements</h2>
+
+<p>The Iowa Electronic Markets, operated by the University of Iowa's Tippie College of Business since 1988, represents prediction markets in their purest academic form. The exchange runs as a centralized double-auction system where both buyers and sellers post limit orders that a matching engine pairs at equilibrium prices, creating a single market-clearing price for each contract. The platform charges no transaction fees, limits maximum stakes to $500 per trader, and restricts participation to academic researchers and students enrolled in approved institutions. This structure exists because IEM operates as a research project rather than a commercial venture, which allows it to optimize purely for information aggregation without considering revenue models, regulatory compliance costs, or the need to compensate market makers for providing liquidity. When researchers analyze IEM presidential election markets, they consistently find minimal systematic pricing biases relative to eventual outcomes.<span class="footnote">1</span> The prices track polling averages closely and convert efficiently into probability estimates that prove reasonably well-calibrated over time. The platform measures pure probability aggregation under laboratory conditions where the structural forces that might create bias in commercial markets have been deliberately designed away.</p>
+
+<p>Kalshi launched in 2021 as the first CFTC-regulated prediction market exchange in the United States, bringing prediction markets into the commercial mainstream under explicit regulatory oversight. The regulatory approval process took years and required demonstrating that markets would operate with institutional-grade oversight, clear resolution criteria tied to authoritative data sources, and protections against manipulation. This regulatory foundation gives Kalshi something neither academic experiments nor offshore crypto platforms can offer: legal certainty for US institutional capital and the operational legitimacy of mainstream financial infrastructure.</p>
+
+<p>The platform operates using a quote-driven maker-taker market structure familiar to anyone who has traded equities or options on traditional exchanges. Market makers post limit orders on both sides of a contract and wait for counterparties, earning the spread between bid and ask prices when trades execute against their orders. Market takers submit market orders demanding immediate execution, paying the spread as a premium for immediacy rather than waiting for favorable prices. Kalshi charges a percentage-based fee on winning positions calculated as approximately $0.07 multiplied by p(1-p), where p represents the contract price. For a contract trading at 50 cents, this fee works out to about 1.75 cents, or 3.5% of position value. For a contract trading at just 10 cents, the same formula yields 0.63 cents, but because the position size is smaller, that represents 6.3% of your capital at risk.</p>
+
+<p>The platform imposes no stake limits, which means traders can deploy institutional-scale capital if they choose. The user base consequently mixes retail speculation with professional market-making operations and sophisticated arbitrageurs moving capital between Kalshi and other platforms to exploit cross-venue pricing discrepancies. This architecture produces something considerably more complex than IEM's single equilibrium price. The maker-taker structure creates bid-ask spreads that represent not just a cost of trading but information about the gap between patient capital willing to provide liquidity and urgent conviction demanding immediate execution. The fee structure systematically penalizes certain positions more than others purely as a function of where they trade on the price spectrum. The scale and diversity of participants enables dynamics that would be impossible in IEM's constrained environment, where no professional market makers operate and no one can risk more than $500. The regulatory framework constrains event scope to officially resolvable outcomes, but this constraint is what enables the platform to function as credible infrastructure for institutional decision-making. When The Wall Street Journal or Bloomberg reports prediction market prices on Federal Reserve decisions or election outcomes, they're reporting CFTC-regulated market prices with legal standing and institutional oversight, not prices from experimental academic platforms or offshore crypto exchanges.</p>
+
+<p>Polymarket launched in 2020 as a crypto-native prediction market built on blockchain infrastructure, taking an entirely different architectural approach. The platform operates as a hybrid Central Limit Order Book where traders post orders on-chain using USDC stablecoins on Polygon's network, with every trade recorded as a public, auditable transaction. Resolution relies on UMA's optimistic oracle system where proposed outcomes stand unless someone challenges them within a dispute window, at which point the dispute escalates to UMA token holder voting. For international users, Polymarket charges 2% on net winnings. The planned US version will charge a flat 0.01% fee per trade, roughly 100 times cheaper than Kalshi's percentage-based fees on equivalent positions.</p>
+
+<p>The architectural choices matter profoundly for what information the market can produce. Blockchain-based settlement means every order, every trade, and every price movement is publicly visible to anyone monitoring the chain. This transparency makes arbitrage opportunities immediately visible to traders with the capital, technical infrastructure, and execution speed to exploit them. Research documenting the 2024 election cycle found approximately $40 million in realized arbitrage profits flowing between Polymarket and other platforms,<span class="footnote">2</span> suggesting substantial and persistent price differences between venues. But transparency creates new problems alongside new possibilities. A Columbia University study analyzing Polymarket's trading patterns found that roughly 25% of volume during certain periods consisted of wash trading, where accounts trade with themselves to manipulate apparent liquidity.<span class="footnote">3</span> The blockchain's auditability makes this behavior detectable in ways it wouldn't be on traditional platforms, but the same transparency that enables detection also enables sophisticated gaming strategies.</p>
+
+<p>The planned US fee structure of 0.01% represents not a marginal improvement over Kalshi but a fundamental cost difference that changes what strategies become economically viable. For the same contract, a Kalshi trader might pay 1-2% in fees while a Polymarket trader pays 0.01%. That hundred-fold difference doesn't just affect profitability at the margin. It determines what trading strategies can exist at all, what information gets priced in, and how quickly arbitrage can eliminate cross-platform discrepancies.</p>
+
+<h2>The Kalshi Evidence</h2>
+
+<p>In September 2025, researchers from University College Dublin published what remains the most comprehensive empirical analysis of prediction market quality at commercial scale.<span class="footnote">4</span> The paper examined Kalshi using a dataset spanning 46,282 contracts across 12,403 distinct events from the platform's 2021 launch through mid-2025. The dataset contains 313,972 individual price observations, providing statistical power to detect patterns that might be invisible in smaller samples or shorter time periods. The analysis covers a massive range of event types including political races at federal and state levels, economic indicator releases, weather outcomes, sports results, and entertainment industry predictions.</p>
+
+<p>The findings reveal systematic bias in how contracts price relative to their eventual outcomes. Contracts trading between 1-10 cents lose approximately 60% of their value on average, meaning these longshots are dramatically overpriced relative to how often they actually win. A contract trading at 5 cents should win roughly 5% of the time if prices accurately reflect probabilities, but in Kalshi's data these contracts win closer to 2% of the time. The market consistently overprices unlikely events by a factor of more than two.</p>
+
+<p>Moving up the price spectrum, the pattern reverses. Contracts trading above 50 cents show the opposite bias with slight underpricing relative to actual outcomes and average returns around positive 2%. A contract trading at 60 cents wins closer to 62% of the time rather than the 60% that the price implies. Favorites are underpriced, though the magnitude of this effect is considerably smaller than the longshot overpricing. This favorite-longshot bias, documented extensively in sports betting and horse racing for decades,<span class="footnote">5</span> operates powerfully in information markets trading on verifiable future events.</p>
+
+<p>The researchers decompose returns by trader type, revealing how the market structure distributes profits and losses. Market makers, who provide liquidity by posting limit orders and waiting for counterparties, see average returns of negative 12% before considering technology costs, capital requirements, or risk management overhead. Market takers, who submit market orders demanding immediate execution, lose 31% on average. Before fees, the typical trader loses about 20% of position value. After fees, that deteriorates to 22%. The immediate-execution premium that takers pay for speed proves expensive, and even the patient capital that makers provide doesn't generate positive returns in aggregate.</p>
+
+<p>The paper documents that bias magnitude has decreased from 2021 to 2025 as the market matures and sophisticated traders learn the patterns, but it hasn't disappeared. The infrastructure continues to shape prices in systematic ways even as participants become more experienced and better capitalized.</p>
+
+<p>Comparing this to Iowa Electronic Markets, where academic literature consistently finds minimal systematic bias, clarifies that the difference isn't trader intelligence or sophistication. IEM participants include many of the same academics who publish research on prediction market efficiency. The difference is infrastructure. The zero-fee, limited-stake, academic environment removes the structural forces that produce bias at scale in commercial markets.</p>
+
+<h2>Fee Structures Determine Outcomes</h2>
+
+<p>The comparison across platforms reveals something deeper than the observation that different markets have different features. Market microstructure isn't neutral infrastructure that facilitates information aggregation with varying degrees of efficiency. The structure itself determines what information can be extracted from trading activity and how that information should be interpreted.</p>
+
+<p>Kalshi's percentage-based fee of approximately $0.07 × p(1-p) creates dramatically different cost structures across the price spectrum in ways that aren't immediately obvious from the formula. For a contract trading at 50 cents, where p equals 0.5, the fee calculation yields $0.07 × 0.5 × 0.5, which equals $0.0175 or 1.75 cents. On a 50-cent position, that fee represents 3.5% of your capital at risk. For a contract trading at 10 cents, where p equals 0.1, the formula yields $0.07 × 0.1 × 0.9, which equals $0.0063 or 0.63 cents. On a 10-cent position, that same 0.63-cent fee now represents 6.3% of your capital. The longshot pays nearly double the percentage fee despite the same absolute dollar amount.</p>
+
+<p>This asymmetry means that to break even after fees, a 10-cent contract needs to win more than 10.63% of the time, while a 50-cent contract needs to win more than 51.75% of the time. The hurdle rate for profitable longshot speculation is structurally higher than for favorite-buying, independent of any behavioral biases or information advantages.</p>
+
+<p>Consider what happens when you trade a longshot versus a favorite on Kalshi. You want to risk $5 either way.</p>
+
+<p>You buy 100 contracts at 5 cents each, spending $5. The trade executes against a maker's limit order. Fee calculation: $0.07 × 0.05 × 0.95 = $0.003325 per contract, or 33 cents total. If your contracts win, you receive $100 minus 33 cents in fees, netting $99.67. Your breakeven probability isn't 5%, it's 5.63%. The contract needs to win more than 1 out of 20 times just to cover the fee burden.</p>
+
+<p>Now buy 10 contracts at 50 cents each, spending $5. The trade executes. Fee calculation: $0.07 × 0.50 × 0.50 = $0.0175 per contract, or 17.5 cents total. If your contracts win, you receive $10 minus 17.5 cents, netting $9.83. Your breakeven probability is 50.89%, barely above the market price.</p>
+
+<p>The asymmetry is structural. The longshot pays 6.6% of position value in fees (33 cents on $5). The favorite pays 3.5% (17.5 cents on $5). You need to be 13% more accurate on the longshot (5% to 5.63%) to break even, but only 1.8% more accurate on the favorite (50% to 50.89%). This isn't behavioral bias. It's mathematics. Even a perfectly rational trader with correct probability estimates must adjust trading strategy to account for asymmetric transaction costs across the price spectrum.</p>
+
+<p>When Kalshi's data shows contracts priced at 1-10 cents losing 60% of their value on average, a substantial portion of that loss represents fees mechanically penalizing longshot speculation more severely than favorite-buying. Iowa Electronic Markets eliminates this dynamic entirely by charging zero transaction fees. The $500 stake limit creates different constraints on market participation, but those constraints apply symmetrically across the entire price spectrum. There's no structural reason emerging from transaction costs alone to avoid longshots versus favorites. Polymarket's planned 0.01% flat fee on US trades is so minimal that it barely registers as a consideration in trading decisions. At that fee level, you can trade longshots and favorites with nearly equal transaction cost burden as a percentage of capital at risk.</p>
+
+<p>Fee structures don't merely add friction to otherwise well-functioning market dynamics. They systematically shape which positions can be profitable and which cannot, creating pricing patterns that superficially resemble behavioral biases but derive partly from structural necessity given the cost environment.</p>
+
+<p>Kalshi's maker-taker market structure separates participants into two distinct roles with fundamentally different information profiles and economic incentives. Market makers post limit orders and wait for counterparties to trade against them, providing liquidity to the market. This liquidity provision exposes makers to adverse selection where when someone urgently wants to trade against your limit order, that counterparty probably possesses information you don't have or values immediacy for hedging purposes that signal conviction. This creates a winner's curse where your limit order gets executed precisely when someone else has reason to believe you're wrong about the probability or valuation.</p>
+
+<p>To compensate for adverse selection risk, makers must widen spreads and price conservatively relative to their true probability estimates. They're not attempting to predict event outcomes with maximum precision. They're attempting to provide liquidity while managing the risk that informed traders will systematically take the profitable side of trades against them. Market takers submit market orders for immediate execution, paying the spread as a premium for immediacy rather than waiting for favorable limit order prices. When you need to trade immediately, you're revealing urgency through your order type. That urgency might signal time-sensitive information, hedging needs, or simply impatience, but regardless of the reason you're paying for speed.</p>
+
+<p>The spread between maker and taker prices isn't market inefficiency waiting to be arbitraged away through better price discovery. It's information about the distribution of conviction and time preferences among market participants. Makers with patient capital who can wait for favorable prices command a premium for providing that liquidity. Takers with urgent conviction or time-sensitive hedging needs pay for immediate execution. The University College Dublin data showing makers losing 12% on average while takers lose 31% reflects this dynamic directly. Makers lose less not because they're smarter but because they're harvesting liquidity provision premiums while bearing adverse selection risk. Takers lose more not because they're dumber but because they're paying for speed and urgency.</p>
+
+<p>Iowa Electronic Markets doesn't create this maker-taker distinction in the same way. In a centralized double auction where all participants post limit orders to a matching engine, there's no clear separation between liquidity providers and liquidity demanders. You're either on the bid side or the ask side, and the matching engine pairs orders at equilibrium prices without distinguishing between patient and urgent capital. The spread exists as the gap between best bid and best ask, but it doesn't encode information about urgency and adverse selection in the same way that Kalshi's explicitly two-sided market structure does.</p>
+
+<p>Market structure doesn't just affect efficiency metrics or liquidity depth. It determines what kinds of information the market can encode in prices. Kalshi's prices contain embedded information about conviction distribution and time preferences that IEM's prices don't carry, not because Kalshi traders are more sophisticated but because the architecture enables that information segmentation structurally.</p>
+
+<p>Each market architecture samples different aspects of uncertainty at different frequencies. Iowa Electronic Markets samples pure probability aggregation by removing fees, limiting stakes, and restricting to academic participants. The resulting prices reflect consensus belief under those specific constraints, not some objective "true probability" of events. Kalshi samples conviction plus time preference plus fee pressure simultaneously. The maker-taker structure segments patient from urgent capital. The fee structure penalizes longshots more than favorites. The regulatory constraints limit event scope to officially resolvable outcomes. Prices reflect all these factors at once. You're not measuring "what will happen" in some abstract sense. You're measuring how conviction distributes among traders facing these specific costs and constraints.</p>
+
+<p>Polymarket samples liquidity plus arbitrage plus transparency. Blockchain infrastructure makes every order and trade visible, enabling sophisticated arbitrage strategies while also enabling wash trading and oracle gaming. The minimal fees make high-frequency approaches economically viable. The flexible oracle mechanism allows arbitrary event scope while introducing resolution manipulation risk. Prices reflect this entire ecosystem of possibilities and constraints.</p>
+
+<p>When the same event trades at 58% on Kalshi and 62% on Polymarket, you're observing how US regulatory infrastructure under fee pressure diverges from international crypto infrastructure under arbitrage pressure. Neither price is "right" in the sense of being closer to some objective truth. Both prices are correct outputs of their respective infrastructures measuring different aspects of the same underlying uncertainty.</p>
+
+<h2>What Bias Actually Reveals</h2>
+
+<p>Prediction markets don't discover pre-existing probabilities about future events waiting to be revealed through better information aggregation. They produce fundamentally different forms of knowledge based on architectural constraints that determine what can be measured and how.</p>
+
+<p>The favorite-longshot bias in Kalshi isn't market failure requiring correction. It's information about how infrastructure shapes outcomes. The bias reveals that fee structures systematically penalize longshot speculation through asymmetric percentage costs, that behavioral tendencies toward lottery-ticket hunting persist even among sophisticated traders with substantial capital, and that maker-taker structures create adverse selection dynamics for liquidity providers. All these forces manifest in prices precisely because the infrastructure makes them operationally relevant to trading decisions.</p>
+
+<p>You cannot separate the behavioral component from the structural component in observed pricing patterns. The infrastructure doesn't merely facilitate measurement of pre-existing behavioral tendencies. It constitutes what those behavioral tendencies look like under specific cost environments. Change the cost structure and you change what counts as biased pricing.</p>
+
+<p>Iowa Electronic Markets' lack of similar bias demonstrates what happens when you deliberately remove commercial considerations from market design. Eliminate fees, cap stakes at $500, restrict participation to academics, and you remove the structural forces that create bias at commercial scale. You achieve cleaner probability aggregation in some sense, but you lose information about conviction distribution, time preferences, and how markets actually behave when real capital flows under commercial incentives.</p>
+
+<p>Polymarket's persistent arbitrage opportunities aren't bugs awaiting elimination through market maturation. The documented $40 million in arbitrage profits reveals that price differences between platforms persist not because arbitrageurs are slow or capital is friction-bound, but because the platforms genuinely measure different things. Each platform's prices are correct for what its infrastructure produces.</p>
+
+<h2>Design Determines Knowledge</h2>
+
+<p>When the same event trades at different prices across platforms, the reflexive response treats this as "market inefficiency" waiting to be arbitraged away through better capital flows. That response assumes there exists some true price being imperfectly discovered by all platforms simultaneously.</p>
+
+<p>No such true price exists. Each architecture produces a fundamentally different knowledge object. The persistent price differences reflect genuine measurement of different aspects of uncertainty rather than varying degrees of error in measuring one underlying truth.</p>
+
+<p>This has implications beyond simply knowing which platform to use. It changes how we should think about prediction markets as an information technology. The standard view treats markets as discovery mechanisms that reveal hidden information about future events through the wisdom of crowds. Better liquidity, more sophisticated participants, and lower transaction costs should yield better predictions that converge on truth.</p>
+
+<p>But if infrastructure constitutes what can be known rather than merely facilitating discovery, then "better" predictions is the wrong framework. Different infrastructures don't produce better or worse measurements of the same thing. They produce measurements of different things entirely. Kalshi's favorite-longshot bias isn't a flaw to be eliminated as the market matures. It's structural information about how commercial markets with asymmetric fee structures operate under regulatory oversight that creates institutional legitimacy. Eliminating the bias would require eliminating the fee structure and regulatory framework, which would produce a different market measuring different aspects of uncertainty.</p>
+
+<p>The implications extend to how these markets get used for decision-making. A trader hedging election exposure cares about different information than a researcher studying probability calibration. The trader needs to know how conviction distributes under urgency and fee pressure because that determines execution costs and available liquidity. The researcher needs clean probability aggregation without structural distortions because that enables calibration studies. Neither is using the "wrong" market. They're using different infrastructures that produce the different types of information their use cases require.</p>
+
+<p>This also reveals something about the limits of arbitrage as an efficiency mechanism. Arbitrage works when price differences represent pure profit opportunities from the same underlying asset trading at different prices. But when platforms measure genuinely different things, arbitrage doesn't eliminate price differences. It creates correlation between platforms by linking them through capital flows, but the correlation is imperfect because the fundamental knowledge objects differ. The $40 million in realized arbitrage profits on Polymarket doesn't represent market immaturity waiting to be eliminated. It represents the ongoing cost of translating between different epistemological frameworks that blockchain infrastructure under minimal fees produces versus what CFTC-regulated infrastructure under percentage fees produces.</p>
+
+<p>Market microstructure doesn't facilitate prediction about futures that exist independently of measurement. It constitutes what prediction means by determining what counts as information, how that information gets weighted in price formation, and what patterns become visible through trading activity. When we casually refer to prediction markets "aggregating information," we're implicitly assuming that information exists independently of the aggregation mechanism. That assumption doesn't hold. The mechanism determines what counts as information in the first place.</p>
+
+<p>Understanding prediction markets means understanding that infrastructure isn't neutral technical plumbing. It's generative. The architecture doesn't just affect efficiency metrics, liquidity depth, or bid-ask spreads. It determines what information the market can produce and what that information means. These platforms aren't telescopes pointing at a future that exists independently of observation, waiting to be discovered through better instruments. They're instruments that produce different data about present uncertainty based on fundamental design choices about who can trade, what they pay to trade, how orders match, and how outcomes resolve.</p>
+
+<p>The market microstructure is the prediction. Design determines epistemology.</p>
+
+<div class="footnotes">
+<strong>References</strong><br>
+[1] Berg, J., Forsythe, R., Nelson, F., & Rietz, T. (2008). "Results from a Dozen Years of Election Futures Markets Research." <i>Handbook of Experimental Economics Results</i>, Volume 1, 742-751.<br><br>
+[2] Polymarket Analytics (2024). "2024 Election Trading Volume and Arbitrage Analysis." https://polymarketanalytics.com/<br><br>
+[3] Lehar, A., & Parlour, C. A. (2024). "Decentralized Prediction Markets: Evidence from the 2024 US Election." Columbia Business School Working Paper.<br><br>
+[4] Burgi, J., Deng, Y., & Whelan, K. (2025). "Market Quality and Price Discovery in Event Contracts: Evidence from Kalshi." University College Dublin Working Paper, September 2025.<br><br>
+[5] Thaler, R. H., & Ziemba, W. T. (1988). "Anomalies: Parimutuel Betting Markets: Racetracks and Lotteries." <i>Journal of Economic Perspectives</i>, 2(2), 161-174.
+</div>
+
+</body>
+</html>
