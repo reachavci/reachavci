@@ -1,7 +1,7 @@
 body {
     font-family: "Times New Roman", Times, serif;
     font-size: 12pt;
-    margin: 30px auto;
+    margin: 15px auto;
     padding: 40px;
     line-height: 1.5;
     color: #000;
@@ -12,7 +12,7 @@ body {
 
 @media (max-width: 1150px) {
     body {
-        margin: 20px auto;
+        margin: 15px auto;
         padding: 30px;
         max-width: 95%;
     }
@@ -20,7 +20,7 @@ body {
 
 @media (max-width: 600px) {
     body {
-        margin: 15px auto;
+        margin: 10px auto;
         padding: 20px;
     }
 }
