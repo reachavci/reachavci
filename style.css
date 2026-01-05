@@ -1,142 +1,26 @@
 body {
     font-family: "Times New Roman", Times, serif;
     font-size: 12pt;
-    margin: 40px auto;
-    padding: 2cm;
+    margin: 30px auto;
+    padding: 40px;
     line-height: 1.5;
     color: #000;
-
-    /* A4 Landscape Styling */
     background-color: #fff;
-    max-width: 29.7cm;
+    max-width: 650px;
     min-height: 21cm;
 }
 
 @media (max-width: 1150px) {
     body {
         margin: 20px auto;
-        padding: 40px;
+        padding: 30px;
         max-width: 95%;
     }
 }
 
 @media (max-width: 600px) {
     body {
-        margin: 10px auto;
+        margin: 15px auto;
         padding: 20px;
-    }
-}
-
-h1 {
-    font-size: 24pt;
-    margin: 0 0 5px 0;
-    font-weight: bold;
-}
-
-h2 {
-    font-size: 12pt;
-    margin: 20px 0 10px 0;
-    font-weight: bold;
-}
-
-a {
-    color: #0000EE;
-    text-decoration: underline;
-}
-
-a:visited {
-    color: #551A8B;
-}
-
-.subtitle {
-    font-size: 12pt;
-    margin: 0 0 15px 0;
-}
-
-.contact {
-    margin-bottom: 15px;
-}
-
-hr {
-    border: none;
-    border-top: 1px solid #000;
-    margin: 15px 0;
-}
-
-.job-entry {
-    margin-bottom: 20px;
-}
-
-.job-title {
-    font-weight: bold;
-}
-
-.job-company {
-    font-style: italic;
-}
-
-.education-entry {
-    margin-bottom: 15px;
-}
-
-.cv ul {
-    margin: 5px 0;
-    padding-left: 20px;
-}
-
-.cv li {
-    margin-bottom: 3px;
-}
-
-/* Post Specific Styles */
-/* Post Specific Styles - Default A4 inheritance */
-
-body.post h1 {
-    font-size: 18pt;
-    margin: 0 0 20px 0;
-}
-
-body.post h2 {
-    font-size: 14pt;
-    margin: 25px 0 10px 0;
-    font-style: italic;
-}
-
-body.post p {
-    margin: 15px 0;
-}
-
-blockquote {
-    font-style: italic;
-    font-size: 11pt;
-    margin: 25px 80px;
-    line-height: 1.4;
-    text-align: center;
-}
-
-.footnote {
-    font-size: 9pt;
-    vertical-align: super;
-}
-
-.footnotes {
-    margin-top: 40px;
-    padding-top: 15px;
-    border-top: 1px solid #000;
-    font-size: 10pt;
-}
-
-.back-link {
-    margin-bottom: 20px;
-}
-
-@media print {
-    @page {
-        size: A4 landscape;
-    }
-
-    body {
-        margin: 2cm;
-        padding: 0;
     }
 }
